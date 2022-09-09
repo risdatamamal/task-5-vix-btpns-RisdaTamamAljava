@@ -7,13 +7,13 @@ type User struct {
 	Username        string
 	Name            string
 	Email           string
+	// EmailVerifiedAt time.Time
 	Password        string
 	Avatar          string
 	PhoneNumber     string
 	City            string
 	Address         string
 	Roles           string
-	EmailVerifiedAt time.Time
 	CreatedAt       time.Time
 	UpdatedAt       time.Time
 }
