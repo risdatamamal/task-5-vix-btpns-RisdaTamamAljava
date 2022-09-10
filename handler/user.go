@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"task-5-vix-btpns-RisdaTamamAljava/helper"
 	"task-5-vix-btpns-RisdaTamamAljava/user"
 
 	"github.com/gin-gonic/gin"
@@ -20,13 +21,25 @@ func (h *userHandler) RegisterUser(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&input)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, nil)
+		errors := helper.FormatValidationError(err)
+		errorMessage := gin.H{"errors" : errors}
+
+		response := helper.APIResponse("Register account failed", http.StatusUnprocessableEntity, "error", errorMessage)
+		c.JSON(http.StatusUnprocessableEntity, response)
+		return
 	}
 
-	user, err := h.userService.RegisterUser(input)
+	newUser, err := h.userService.RegisterUser(input)
+
 	if err != nil {
-		c.JSON(http.StatusBadRequest, nil)
+		response := helper.APIResponse("Register account failed", http.StatusBadRequest, "error", nil)
+		c.JSON(http.StatusBadRequest, response)
+		return
 	}
 
-	c.JSON(http.StatusOK, user)
+	formatter := user.FormatUser(newUser, "tokentokentokentokentokentokentoken")
+
+	response := helper.APIResponse("Account has been registered", http.StatusOK, "success", formatter)
+
+	c.JSON(http.StatusOK, response)
 }

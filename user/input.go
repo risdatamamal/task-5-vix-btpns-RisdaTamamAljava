@@ -1,8 +1,8 @@
 package user
 
 type RegisterUserInput struct {
-	Name        string
-	Email       string
-	PhoneNumber string
-	Password    string
+	Name         string `json:"name" binding:"required"`
+	Email        string `json:"email" binding:"required,email"`
+	Phone_Number string `json:"phone_number" binding:"required"`
+	Password     string `json:"password" binding:"required,min=6"`
 }
