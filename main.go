@@ -2,8 +2,10 @@ package main
 
 import (
 	"log"
+	"task-5-vix-btpns-RisdaTamamAljava/handler"
 	"task-5-vix-btpns-RisdaTamamAljava/user"
 
+	"github.com/gin-gonic/gin"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -19,11 +21,12 @@ func main() {
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
 
-	userInput := user.RegisterUserInput{}
-	userInput.Name = "Test simpan dari service"
-	userInput.Email = "contoh@gmail.com"
-	userInput.PhoneNumber = "08202092092"
-	userInput.Password = "password"
+	userHandler := handler.NewUserHandler(userService)
 
-	userService.RegisterUser(userInput)
+	router := gin.Default()
+	api := router.Group("/api/v1")
+
+	api.POST("/users/register", userHandler.RegisterUser)
+
+	router.Run()
 }
