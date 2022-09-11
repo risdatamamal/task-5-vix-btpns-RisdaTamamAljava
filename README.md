@@ -1,22 +1,22 @@
-# Task 5 VIX BTPNS Risda Tamam Aljava
+# Task 5 VIX BTPN Syariah
 
-Endpoint
+# Endpoint
 
-1. Register Users
+Register Users
 ```css
 
 POST: localhost:8080/api/v1/users/register
 
 ```
 
-2. Login Users
+Login Users
 ```css
 
 POST: localhost:8080/api/v1/users/login
 
 ```
 
-2. Email Checkers Users
+Email Checkers Users
 ```css
 
 POST: localhost:8080/api/v1/users/email_checkers
