@@ -8,3 +8,10 @@ Endpoint
 localhost:8080/api/v1/users/register
 
 ```
+
+2. Login Users
+```
+
+localhost:8080/api/v1/users/login
+
+```
