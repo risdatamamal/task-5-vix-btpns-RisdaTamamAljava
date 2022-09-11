@@ -22,3 +22,8 @@ Email Checkers Users
 POST: localhost:8080/api/v1/users/email_checkers
 
 ```
+
+Upload Avatar
+```css
+POST: localhost:8080/api/v1/avatars
+```
