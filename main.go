@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"task-5-vix-btpns-RisdaTamamAljava/auth"
 	"task-5-vix-btpns-RisdaTamamAljava/handler"
 	"task-5-vix-btpns-RisdaTamamAljava/user"
 
@@ -20,8 +21,9 @@ func main() {
 
 	userRepository := user.NewRepository(db)
 	userService := user.NewService(userRepository)
+	authService := auth.NewService()
 
-	userHandler := handler.NewUserHandler(userService)
+	userHandler := handler.NewUserHandler(userService, authService)
 
 	router := gin.Default()
 	api := router.Group("/api/v1")
